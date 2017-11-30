@@ -1,12 +1,13 @@
 {
     "name": "syllistudio/line-messaging",
+    "type": "library",
     "description": "Foundation Line Messaging SDK",
     "keywords": [
         "LINE",
         "bot",
         "sdk"
     ],
-    "type": "library",
+    "license": "",
     "authors": [
         {
             "name": "sylli.studio.com",
@@ -17,7 +18,7 @@
         "php": ">=5.4"
     },
     "autoload": {
-        "psr-4": {
+        "psr-0": {
             "Syllistudio\\LineMessaging\\": "src/"
         }
     },
