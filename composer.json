@@ -1,13 +1,24 @@
 {
     "name": "syllistudio/line-messaging",
-    "description": "Demo-package to sending message via line",
-    "type": "package",
+    "description": "Foundation Line Messaging SDK",
+    "keywords": [
+        "LINE",
+        "bot",
+        "sdk"
+    ],
+    "type": "library",
     "authors": [
         {
             "name": "sylli.studio.com",
             "email": "theerapan@syllistudio.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Syllistudio\\LineMessaging\\": "src/"
+        }
+    },
 }
