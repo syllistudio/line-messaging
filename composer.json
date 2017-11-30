@@ -1,0 +1,13 @@
+{
+    "name": "syllistudio/line-messaging",
+    "description": "Demo-package to sending message via line",
+    "type": "package",
+    "authors": [
+        {
+            "name": "sylli.studio.com",
+            "email": "theerapan@syllistudio.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
