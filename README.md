@@ -108,7 +108,7 @@ Because the `replyToken` becomes invalid after a certain period of time, respons
 
 ### Send Push Message
 
-You can send messages to a user, group, or room at any time by method `pushMessage($to, MessageBuilder $messages)`.
+You can send messages to a `user`, `group`, or `room` at any time by method `pushMessage($to, MessageBuilder $messages)`.
 
 ```php
 <?php
@@ -129,9 +129,9 @@ class ChatBot extends Model
 	}
 ```
 
-Use a userId, groupId, or roomId value returned in a webhook event object.
+Use a `userId`, `groupId`, or `roomId` value returned in a webhook event object.
 
-Note: Do not use the LINE ID found on the LINE app.
+Note: Do not use the `LINE ID` found on the LINE app.
 
 ## Contributing
 
