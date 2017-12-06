@@ -20,7 +20,7 @@ php artisan vendor:publish --provider="Yamakadi\LineWebhooks\LineWebhooksService
 
 This is the contents of the config file that will be published at `config/line-messaging.php`:
 
-```
+```php
 return [
 	/*
      * You need to define your channel secret and access token in your environment variables
@@ -43,7 +43,7 @@ Mechanism to work with LINE bot is communication between the server of your bot 
 
 You can create it easy in your routing. In the routes file of your app you must pass that route to `Route::post('/webhook', 'LineBotController@handleWebhook')` After you need to set your webhook URL in your LINE console. Then use our trait `LineWebhookReceiver` in `LineBotController`
 
-```
+```php
 <?php
 
 namespace App\Http\Controllers;
@@ -84,7 +84,7 @@ Remember this register a `POST` route to a controller provided by this package. 
 
 You can send messages back to users, groups, and rooms with a `replyToken` you can get it from webhook. Just add `LineMessaging` trait in to your controller. The trait will adds method `replyMessage($replyToken, MessageBuilder $messages)` into your controller.
 
-```
+```php
 <?php
 
 namespace App\Http\Controllers;
@@ -110,7 +110,7 @@ Because the `replyToken` becomes invalid after a certain period of time, respons
 
 You can send messages to a user, group, or room at any time by method `pushMessage($to, MessageBuilder $messages)`.
 
-```
+```php
 <?php
 
 namespace App;
