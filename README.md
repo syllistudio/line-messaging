@@ -15,7 +15,7 @@ $ composer require syllistudio/line-messaging
 The service provider will automatically register itself. After that, You need to add our `Syllistudio\LineMessaging\LineMessagingProvider::class` to the array of Service Providers in file `config/app.php` You must publish the config file with:
 
 ```
-php artisan vendor:publish --provider="Yamakadi\LineWebhooks\LineWebhooksServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Syllistudio\LineMessaging\LineMessagingProvider" --tag="config"
 ```
 
 This is the contents of the config file that will be published at `config/line-messaging.php`:
