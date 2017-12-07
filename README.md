@@ -41,7 +41,7 @@ Mechanism to work with LINE bot is communication between the server of your bot 
 
 ### Create Webhook URL
 
-You can create it easy in your routing. In the routes file of your app you must pass that route to `Route::post('/webhook', 'LineBotController@handleWebhook')` After you need to set your webhook URL in your LINE console. Then use our trait `LineWebhookReceiver` in `LineBotController`
+You can create it easy in your routing. In the routes file of your app you must pass that route to `Route::post('/webhook', 'LineBotController@handleWebhook')` After you need to set your webhook URL in your LINE console. Then use our trait `LineWebhookReceiver` into your controller.
 
 ```php
 <?php
