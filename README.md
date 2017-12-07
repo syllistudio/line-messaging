@@ -2,7 +2,7 @@
 
 ## About Line Messaging
 
-This package provides a trait that adds simple events of line behavior. The package have 2 part. First, the package can help you handle those webhooks events sent by Line Platform. The second is simple medthod to communicate with Line API.
+This package provides easy integration with LINE Message API interfaces. The package contains 2 essential parts. First, a webhook that handles events sent from LINE Messaging API. Second, simple methods to communicate using Line Messaging API.
 
 ## Installation
 
@@ -37,11 +37,11 @@ Note: Find both `channel_secret` and `channel_access_token` in your console LINE
 
 ## Usage
 
-Mechanism to work with LINE bot is communication between the server of your bot application and the LINE Platform. When a user sends your bot a message, a webhook is triggered and the LINE Platform sends a request to your webhook URL. Your server then sends a request to the LINE Platform to respond to the user. Requests are sent over HTTPS in JSON format. 
+Mechanism to work with LINE bot is a communication between the server of your bot application and the LINE Platform. When a user sends your bot a message, LINE Messaging API will send a request to your webhook URL. The webhook created with this package will provide methods to handle those events sent from LINE Messaging API. To response to those events or communicate with your contacts, this package provide methods that let the server sends a request to the LINE Platform to respond to the user. Requests are sent over HTTPS in JSON format.
 
 ### Create Webhook URL
 
-You can create it easy in your routing. In the routes file of your app you must pass that route to `Route::post('/webhook', 'LineBotController@handleWebhook')` After you need to set your webhook URL in your LINE console. Then use our trait `LineWebhookReceiver` into your controller.
+You can create it easily in your routing. You will first need to create Controller and use our trait `LineWekhookReceiver`. After that, in the route file of your app, you must create a route to the created Controller `Route::post('/webhook', 'YourControllerName@handleWebhook')`. This will give you the webhook URL and you will need to set this webhook URL in your LINE console to integrate your app with LINE messaging API.
 
 ```php
 <?php
@@ -51,7 +51,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Syllistudio\LineMessaging\LineWebhookReceiver;
 
-class LineBotController extends Controller
+class YourControllerName extends Controller
 {
 	use LineWebhookReceiver;
 
@@ -76,13 +76,20 @@ class LineBotController extends Controller
 	}
 ```
 
-There are method to handle events from webhook. You can find the [full list of events types](https://developers.line.me/en/docs/messaging-api/reference/#webhook-event-objects) in the Line documentation.
+These are pre-defined methods that handle events received from our webhook. You can find the full list of events types and its detail information here in the [Line Messaging API documentation](https://developers.line.me/en/docs/messaging-api/reference/#webhook-event-objects).
 
-Remember this register a `POST` route to a controller provided by this package. Because Line has no way of getting a csrf-token, you must add that route to the except array of the VerifyCsrfToken.
+**NOTE**: Line event responses will not have csrf-token included thus you must add your route to the except array of the VerifyCsrfToken middleware.
 
-### Send Reply Message
+### Sending Message
 
-You can send messages back to users, groups, and rooms with a `replyToken` you can get it from webhook. Just add `LineMessaging` trait in to your controller. The trait will adds method `replyMessage($replyToken, MessageBuilder $messages)` into your controller.
+This package provides `LineMessaging` trait that support below messaging methods.
+
+- Send reply message
+- Send push message
+
+#### Send Reply Message
+
+You can send messages back to users, groups, and rooms from a `replyToken` received from webhook events. Just add `LineMessaging` trait in to your controller. The trait will adds method `replyMessage($replyToken, MessageBuilder $messages)` into your controller.
 
 ```php
 <?php
@@ -106,7 +113,7 @@ class LineBotController extends Controller
 
 Because the `replyToken` becomes invalid after a certain period of time, responses should be sent as soon as a message is received. Reply tokens can only be used once.
 
-### Send Push Message
+#### Send Push Message
 
 You can send messages to a `user`, `group`, or `room` at any time by method `pushMessage($to, MessageBuilder $messages)`.
 
@@ -129,9 +136,9 @@ class ChatBot extends Model
 	}
 ```
 
-Use a `userId`, `groupId`, or `roomId` value returned in a webhook event object.
+Use a `userId`, `groupId`, or `roomId` value returned from webhook event object.
 
-Note: Do not use the `LINE ID` found on the LINE app.
+**NOTE**: Do not use the `LINE ID` found on the LINE app.
 
 ## License
 
