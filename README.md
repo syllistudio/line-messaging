@@ -133,8 +133,6 @@ Use a `userId`, `groupId`, or `roomId` value returned in a webhook event object.
 
 Note: Do not use the `LINE ID` found on the LINE app.
 
-## Contributing
-
 ## License
 
 The LineMessaging is open-sourced software licensed.
